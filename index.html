@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>花瓣</title>
+    <link rel="stylesheet" href="./normalize.css"/>
+    <link rel="stylesheet" href="./reset.css"/>
+    <link rel="stylesheet" href="./font/iconfont.css"/>
+</head>
+<style>
+    #page {
+        min-width: 1024px;
+    }
+    .wrapper-996 {
+       width: 996px;
+    }
+    .wrapper {
+        position: relative;
+        margin: 0 auto;
+        border: 0;
+    }
+    .transition {
+        -webkit-transition: background .15s ease-in-out;
+        -moz-transition: background .15s ease-in-out;
+        -o-transition: background .15s ease-in-out;
+        transition: background .15s ease-in-out;
+    }
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    header {
+        background: url("./image/headbg2.jpg");
+        height: 560px;
+        overflow: hidden;
+        position: relative;
+    }
+    nav {
+        position: fixed; /*fixed会收缩*/
+        width: 100%;
+        z-index: 999;
+        height: 48px;
+        top: 0;
+        left: 0;
+        background: #fff;
+    }
+    nav.nologin-index {
+        background: none;
+    }
+    .logo {
+        float: left;
+        display: block;
+        width: 80px;
+        height: 28px;
+        margin-right: 20px;
+    }
+    .nologin-index .logo {
+        background: url('./image/logo.svg') 0 0 no-repeat;
+    }
+    .logo {
+        background: url('./image/logo2.svg') 0 0 no-repeat;
+    }
+    .header-centre {
+        overflow: hidden;  /*阻止h1的外边距合并*/
+    }
+    .nav-left {
+        float: left;
+        margin-top: 10px;
+    }
+    .category {
+        line-height: 28px;
+        float: left;
+    }
+    .icon-new {
+        color: #f6a624;
+        font-size: 23px;
+        vertical-align: middle;
+    }
+    .nologin-index .category>li>a {
+        color: rgba(255,255,255,.85);
+    }
+    .category>li>a {
+        color: #999;
+    }
+    .category>li {
+        float: left;
+        margin-right: 25px;
+        border-bottom: 1px solid transparent;
+    }
+    .category>li:last-child {
+        font-size: 22px;
+        cursor: pointer;
+        position: relative;
+    }
+    .nologin-index .category>li:last-child {
+        color: rgba(255,255,255,.85);
+    }
+    .category>li:last-child {
+        color: #999;
+    }
+    .category>li:hover {
+        border-bottom: 1px solid #fff;
+    }
+    .categrory-more {
+        display: none;
+        width: 310px;
+        position: absolute;
+        top: 50px;
+        left: -128px;
+        z-index: 1;
+        background: #fff;
+        font-size: 14px;
+        color: #444;
+        font-family: "helvetica neue", arial, sans-serif;
+        font-size: 14px;
+    }
+    .categrory-more .icon-shangsanjiao {
+        position: absolute;
+        font-size: 22px;
+        color: #fff;
+        top: -19px;
+        left: 41%;
+    }
+    .categrory-more a {
+        color:#222;
+    }
+    .categrory-more a:hover {
+        color: #c90000;
+    }
+    .more-header{
+        padding: 15px 0 10px 35px;
+        border-bottom: 1px solid #ddd;
+    }
+    .more-header li{
+        float: left;
+        margin-right: 33px;
+    }
+    .more-header li a {
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .more-main {
+        border-bottom: 1px solid #ddd;
+    }
+    .more-main ul {
+        margin: 10px 35px;
+    }
+    .more-main li {
+        float: left;
+        margin-right: 56px;
+    }
+    .more-main li:nth-child(2) {
+        margin-left: 23px;
+    }
+    .more-main li:nth-child(4) {
+        margin-left: 33px;
+    }
+    .more-main li:nth-child(8) {
+        margin-left: 5px;
+    }
+    .more-main li:last-child {
+        color: #000;
+        font-weight: bold;
+    }
+    .more-footer ul {
+        margin-left: 21px;
+    }
+    .more-footer li {
+        float: left;
+        margin: 10px 8px;
+    }
+    .more-footer li:first-child {
+        border: 1px solid #999;
+        padding: 0 7px;
+    }
+    .more-footer .icon-pin {
+        color: #999;
+    }
+    .more-footer .icon-pin:hover {
+        color: #222;
+    }
+    .more-footer li a {
+        color: #999;
+    }
+    .more-footer li a:hover {
+        color: #999;
+        border-bottom: 1px solid #999;
+    }
+    .icon-gengduo:hover .categrory-more {
+        display: block;
+    }
+
+    .nav-centre {
+        margin-top: 6px;
+        margin-right: 138px;
+        overflow: hidden;
+        position: relative;
+        display: none;
+    }
+    .nav-centre.active {
+        display: block;
+    }
+    .nav-centre input {
+        width: 100%;
+        height: 32px;
+        border-radius: 2px;
+        padding: 0 6px 0 12px;
+        color: #bbb;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        outline: none;
+    }
+    .nav-centre input:focus {
+        background: #fff;
+        color: #777;
+    }
+    .icon-sou {
+        position: absolute;
+        right:10px;
+        font-size: 18px;
+        top: 7px;
+        color: #bbb;
+    }
+    .icon-sou:hover {
+        color: #222;
+        cursor: pointer;
+    }
+    .nav-right {
+        float: right;
+        margin: 6px 9px 0 0;
+    }
+    .nologin-index .nav-right {
+        margin-top: 6px;
+    }
+    .nav-right li{
+        float: left;
+    }
+    .nav-right li:first-child{
+        margin-right: 10px;
+    }
+    .nav-right a {
+        display: block;
+        width: 52px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        border-radius: 2px;
+    }
+    .nologin-index .nav-right li:first-child a:hover {
+        background: rgba(201,0,0,.7);
+    }
+    .nologin-index .nav-right li:last-child a:hover {
+        background: #fff;
+        color: #222;
+    }
+    .nologin-index .nav-right li:first-child a {
+        background: rgba(201,0,0,.9);
+        color: #fff;
+    }
+     .nologin-index .nav-right li:last-child a {
+        border: 1px solid #fff;
+        color: #fff;
+         background: none;
+    }
+    .nav-right li:first-child a:hover {
+        background: linear-gradient( #F45D68, #E54646);
+    }
+
+    .nav-right li:first-child a {
+        background: linear-gradient( #E53E49, #D43636);
+        color: #fff;
+        border: 1px solid #C90000;
+    }
+    .nav-right li:last-child a {
+        border: 1px solid #D9D9D9;
+        background: linear-gradient( #FAFAFA, #F2F2F2);
+    }
+    .nav-right li:last-child a:hover {
+        background: linear-gradient(#FFF, #F7F7F7);
+        color: #222;
+    }
+    /*header-centre*/
+    .header-centre {
+        text-align: center;
+        margin-top: 118px;
+    }
+    h1 {
+        background: url("./image/head_title.svg") no-repeat;
+        height: 54px;
+        width: 540px;
+        margin: 0 auto 40px;
+    }
+    .search-ipt input {
+        padding: 0 10px;
+        width: 557px;
+        height: 34px;
+        border: 1px solid rgba(255,255,255,.8);
+        border-radius: 2px;
+        color: #fff;
+        background: rgba(0,0,0,.15);
+    }
+    .search-ipt:hover input{
+        background: rgba(0,0,0,.25);
+    }
+    .search-ipt:hover .icon-sou {
+        color: #fff;
+    }
+    form {
+        position: relative;
+        display: inline-block;
+    }
+    .search-ipt .icon-sou {
+        position: absolute;
+        right: 8px;
+        font-size: 28px;
+        top: 3px;
+    }
+    .search p {
+        display: inline-block;
+        margin: 10px 5px;
+        font-size: 14px;
+    }
+    .search p:nth-child(2){
+        color: #ddd;
+    }
+    .search p:last-child a{
+        color: #fff;
+    }
+    .search p:last-child a:hover {
+       text-decoration: underline;
+    }
+    .author {
+        position: absolute;
+        right:9px;
+        bottom: 18px;
+    }
+    .author a {
+    color: rgba(255,255,255,.85);
+    }
+    .author a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+    .author span {
+        color: #fff;
+    }
+    /*-------main------------*/
+    .attention-line:before {
+        content: '';
+        display: inline-block;
+        width: 44%;
+        position: absolute;
+        right: 0;
+        top: 9px;
+        border-bottom: 1px solid #eee;
+    }
+    .attention-line:after {
+        content: '';
+        display: inline-block;
+        width: 44%;
+        border-bottom: 1px solid #ededed;
+        position: absolute;
+        left: 0;
+        top: 9px;
+    }
+    .attention-line {
+        margin-top: 26px;
+        position: relative;
+        text-align: center;
+    }
+    .attention-line span {
+        color: #999;
+        font-size: 16px;
+        margin: 0 24px;
+    }
+    .category-image-box li {
+        float: left;
+    }
+    .category-image-box {
+
+        margin: 16px -16px 35px 0;
+        overflow: hidden;
+    }
+    .category-image-box li a {
+        display: block;
+        position: relative;
+        display: block;
+        float: left;
+        margin: 16px 16px 0 0;
+        //width: 200px;
+        height: 70px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        overflow: hidden;
+    }
+    .category-image-box li a:hover img{
+        opacity: 1;
+    }
+    .category-image-box li img {
+        display: inline-block;
+        width: 244px;
+        margin-left: -4px;
+        margin-top: -4px;
+        opacity: 0.9;
+    }
+    @media screen and (max-width: 1275px){
+        .category-image-box li a {
+            width: 128px;
+        }
+        .wrapper-996 {
+            width: 996px;
+        }
+    }
+    @media screen and (max-width: 1528px) and (min-width: 1276px){
+        .category-image-box li a {
+            width: 164px;
+        }
+        .wrapper-996 {
+            width: 1248px;
+        }
+    }
+
+    @media screen and (min-width: 1529px){
+        .category-image-box li a {
+            width: 200px;
+        }
+        .wrapper-996 {
+            width: 1500px;
+        }
+
+    }
+    .category-image-box ul {
+        margin: 0 auto;
+
+    }
+    .category-image-box li .cover {
+        height: 70px;
+        line-height: 70px;
+        font-size: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        font-weight: 900;
+        color: #fff;
+        text-align: center;
+        font-family: "\5FAE\8F6F\96C5\9ED1","helvetica neue",arial,sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-shadow: 0 1px 0 rgba(0,0,0,.3);
+    }
+    .recommend-line:before {
+        content: '';
+        display: inline-block;
+        width: 44%;
+        position: absolute;
+        right: 0;
+        top: 9px;
+        border-bottom: 1px solid #eee;
+    }
+    .recommend-line:after {
+        content: '';
+        display: inline-block;
+        width: 44%;
+        border-bottom: 1px solid #ededed;
+        position: absolute;
+        left: 0;
+        top: 9px;
+    }
+    .recommend-line {
+        margin:10px 0 35px;
+        position: relative;
+        text-align: center;
+    }
+    .recommend-line span {
+        color: #999;
+        font-size: 16px;
+    }
+    .recommend-container {
+        margin: 15px auto;
+    }
+    .recommend-container-row {
+        margin-bottom: 2px;
+    }
+    .recommend-container-row li {
+        float: left;
+    }
+    .recommend-box {
+        position: relative;
+        float: left;
+        width: 245px;
+        height: 245px;
+        margin-right: 4px;
+    }
+    .recommend-infobox.small {
+        height: 121px;
+    }
+    @media screen and (min-width: 1529px) {
+        .recommend-box {
+            width: 296px;
+            height: 296px;
+        }
+    }
+    @media screen and (min-width: 1276px) {
+        .recommend-infobox.small {
+            height: 146px;
+        }
+    }
+
+    @media screen and  (max-width: 1528px) and (min-width: 1276px) {
+        .recommend-box {
+            width: 308px;
+            height: 308px;
+        }
+        .recommend-infobox.small {
+            height: 152px;
+            margin-bottom: 4px;
+        }
+    }
+    .recommend-infobox {
+        position: relative;
+        margin-bottom: 4px;
+        padding: 10px 16px;
+        background: #fafafa;
+        //width: 100%; /*为什么要100%，我先去掉试试*/
+
+    }
+    .recommend-infobox:hover {
+        background: #f5f5f5;
+    }
+    .recommend-box img {
+        width: 100%;
+        height: 100%;
+    }
+    .recommend-box img:hover {
+        opacity: .78;
+    }
+
+    .recommend-box .icon-zuosanjiao ,
+    .recommend-box .icon-552cd681662a6 {
+        position: absolute;
+    }
+    .recommend-box .icon-zuosanjiao {
+        top: 22%;
+        left: -26px;
+        color: #fff;
+        font-size: 33px;
+    }
+    .recommend-box .icon-zuosanjiao.zuosanjiao2 {
+        top: 23%;
+        left: -18px;
+        color: #fafafa;
+        font-size: 30px;
+        z-index: 1;
+    }
+    .recommend-box .icon-552cd681662a6 {
+        top: 74%;
+        right: -26px;
+        color: #fff;
+        font-size: 33px;
+        z-index: 1;
+    }
+    .recommend-box .icon-552cd681662a6.yousanjiao2 {
+        top: 74.9%;
+        right: -18px;
+        color: #fafafa;
+        font-size: 30px;
+        z-index: 2;
+    }
+    .recommend-infobox .recommend-data{
+        box-sizing: content-box;
+        position: absolute;
+        padding: 0 20px 5px 0;
+        width: 80px;
+        height: 25px;
+        border-bottom: 1px solid #ededed;
+        background: url('./image/box.svg') -140px 0 no-repeat;
+    }
+    .recommend-infobox>h2 {
+        margin: 50px 0 3px 0;
+        line-height: 22px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .recommend-infobox>h2:hover a{
+        color: #9A0000;
+    }
+    @media screen and (min-width: 1276px) {
+        .recommend-infobox .recommend-data {
+            height: 40px;
+            background-position: 0 0;
+        }
+        .recommend-infobox>h2 {
+            line-height: 20px;
+            margin-top: 54px;
+            font-weight: 400;
+            font-size: 20px;
+        }
+        .recommend-infobox>span {
+            margin-top: 10px;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        .recommend-infobox .recommend-data {
+            height: 25px;
+            background-position: -140px 0;
+        }
+        .recommend-infobox>h2 {
+            margin: 40px 0 3px 0;
+        }
+        .recommend-infobox>span {
+            display: none;
+        }
+
+    }
+    .recommend-infobox>p {
+       margin: 7px 0;
+    }
+    .recommend-infobox p>span {
+        color: #999;
+        margin-right: 10px;
+    }
+    .recommend-infobox >span {
+        color: #999;
+    }
+    .recommend-infobox>span a {
+        color: #9e7e6b;
+        margin-left: 5px;
+    }
+    .recommend-infobox>span a:hover {
+        color: #9e7e6b;
+        text-decoration: underline;
+    }
+    .recommend-infobox.tx-right {
+        text-align: right;
+    }
+    .recommend-infobox.tx-right p>span {
+        margin: 0 0 0 10px;
+    }
+    .recommend-infobox.tx-right .recommend-data {
+        right: 16px;
+        padding: 0 0 5px 20px;
+        background-position: 20px 0;
+    }
+    @media screen and (min-width: 1276px) {
+        .recommend-infobox.tx-right .recommend-data {
+            background-position: 25px 0;
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        .recommend-infobox.tx-right .recommend-data {
+            background-position: -88px 0;
+        }
+        .recommend-infobox.big {
+            display: block;
+            position: absolute;
+            left: 30px;
+            bottom: 20px;
+            background: rgba(0,0,0,.4);
+            width: auto;
+            height: 56px;
+            overflow: inherit;
+            padding: 8px 16px;
+            z-index: 2;
+        }
+        .recommend-infobox.big .recommend-data {
+            position: absolute;
+            left: -30px;
+            width: 30px;
+            height: 56px;
+            padding: 0;
+            top: 0;
+            background-color: rgba(50,50,50,.4);
+            background-position: -236px 7px;  /*倒置字体*/
+            border: 0 none;
+        }
+        .recommend-infobox.big>h2 {
+            text-align: left;
+            margin: 0;
+            font-size: 18px;
+            line-height: 20px;
+        }
+        .recommend-infobox.big.board>span {
+            display: none;
+        }
+        .recommend-infobox.big>h2>a {
+            color: #fff;
+        }
+        .recommend-infobox.big.board>p>span {
+            color: #bbb;
+        }
+    }
+    @media screen and (min-width: 1529px) {
+         .recommend-infobox.tx-right.big {
+             padding-top: 156px;
+         }
+    }
+    @media screen and (min-width: 1276px) and (max-width: 1528px) {
+        .recommend-infobox.big {
+            display: block;
+            position: absolute;
+            left: 30px;
+            bottom: 20px;
+            background: rgba(0,0,0,.4);
+            width: auto;
+            height: 56px;
+            overflow: inherit;
+            padding: 8px 16px;
+        }
+        .recommend-infobox.big .recommend-data {
+            position: absolute;
+            left: -30px;
+            width: 30px;
+            height: 56px;
+            padding: 0;
+            top: 0;
+            background-color: rgba(50,50,50,.4);
+            background-position: -236px 7px;  /*倒置字体*/
+            border: 0 none;
+        }
+        .recommend-infobox.big>h2 {
+            text-align: left;
+            margin: 0;
+            font-size: 18px;
+            line-height: 20px;
+        }
+        .recommend-infobox.big.board>span {
+            display: none;
+        }
+        .recommend-infobox.big>h2>a {
+            color: #fff;
+        }
+        .recommend-infobox.big.board>p>span {
+            color: #bbb;
+        }
+    }
+    .recommend-hidebox {
+        position: relative;
+    }
+    /*---------加载更多----------*/
+    .recommend-more {
+        position: relative;
+    }
+    .recommend-more:before {
+        content: '';
+        display: block;
+        width: 22%;
+        position: absolute;
+        left: 0;
+        top: 16px;
+        border-bottom:1px solid #ededed;
+    }
+    .recommend-more:after {
+        content: '';
+        display: block;
+        width: 22%;
+        position: absolute;
+        right: 0;
+        top: 16px;
+        border-bottom:1px solid #ededed;
+    }
+    .recommend-more a {
+        display: block;
+        font-size: 16px;
+        color: #999;
+        padding: 10px;
+        width: 49%;
+        background-color: #f7f7f7;
+        margin: 26px auto 0;
+        text-align: center;
+    }
+    .category-browse {
+        margin-top: 40px;
+    }
+    .category-browse .category-content {
+        margin-top: 10px;
+    }
+    .category-title>p:first-child {
+        font-size: 16px;
+        float: left;
+    }
+    .category-title>p:last-child {
+        font-size: 16px;
+        float: right;
+    }
+    .category-browse .category-content:before {
+        content: '';
+        display: block;
+        border-bottom: 1px solid #ccc;
+    }
+    .category-browse ul {
+        float: left;
+        width: 300px;
+        margin-top: 10px;
+    }
+    @media screen and (max-width: 1528px) {
+        .category-browse ul {
+            width: 190px;
+        }
+    }
+    .category-browse li {
+        margin-top: 10px;
+    }
+    .category-browse li>a {
+        color: #222;
+    }
+    .category-browse a:hover {
+        color: #9A0000;
+        text-decoration: underline;
+    }
+    /*---------footer-----------*/
+    footer {
+        background: #333;
+        padding-top: 25px;
+        margin-top: 20px;
+    }
+    footer .msg {
+        float: left;
+    }
+    .msg ul{
+        float: left;
+        width: 240px;
+    }
+    footer li {
+        margin-bottom: 20px;
+    }
+    footer ul a {
+        color: #bbb;
+    }
+    footer ul li {
+        color: #bbb;
+    }
+    footer ul a:hover {
+        color: #fff;
+    }
+    footer li:first-child,
+    footer li:first-child>a{
+        color: #ddd;
+        font-size: 16px;
+    }
+    .follow li:hover {
+        color: #fff;
+    }
+    .follow ul {
+        float: right;
+        width: 264px;
+        height: 180px;
+        position: relative;
+        padding-left: 10px;
+
+    }
+    .follow ul:before {
+        content: '';
+        display: block;
+        height: 202px;
+        position: absolute;
+        left: -28px;
+        top: -2px;
+        color: #bbb;
+        border-right: 1px solid #bbb;
+    }
+    .follow ul:after {
+        content: '';
+        display: block;
+        height: 202px;
+        position: absolute;
+        right: 0px;
+        top: -2px;
+        color: #bbb;
+        border-right: 1px solid #bbb;
+    }
+    .follow ul li:nth-child(4) .big-weixin img {
+        display: none;
+        position: absolute;
+        right: 37px;
+        bottom: 21px;
+    }
+    .follow ul li:nth-child(4):hover .big-weixin img{
+        display: block;
+    }
+    footer .bottom{
+        width: 100%;
+        background: #222;
+        margin-top: 20px;
+        text-align: center;
+        padding-top: 25px;
+    }
+    footer .bottom li{
+        display: inline-block;
+        font-size: 14px;
+        color: #bbb;
+    }
+    footer .bottom li:last-child a:hover{
+        text-decoration: underline;
+    }
+    .elevator {
+        position: fixed;
+        right: 7px;
+        bottom: 3px;
+    }
+    .elevator>li {
+        cursor: pointer;
+        width: 40px;
+        height: 36px;
+        border-radius: 2px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        text-align: center;
+        background: rgba(0,0,0,.6);
+        line-height: 36px;
+        margin-bottom: 5px;
+    }
+    .elevator li span {
+        color: #fff;
+        font-size: 18px;
+    }
+    .elevator .tool {
+        width: 143px;
+        position: absolute;
+        left: -158px;
+        top: -28px;
+        background: #fff;
+        box-shadow: 0 1px 8px rgba(0,0,0,.1);
+        border-radius: 2px;
+        display: none;
+    }
+    .elevator .tool li:hover {
+        background: #eee;
+    }
+    .elevator>li:last-child:hover .tool{
+        display: block;
+    }
+    .elevator .tool li:last-child {
+        position: absolute;
+        right: -15px;
+        bottom: 5px;
+        color: #fff;
+    }
+    .elevator .tool li:last-child:hover {
+        background: none;
+    }
+    .elevator .tool li:last-child span {
+        font-size: 19px;
+    }
+    .sign-in-and-login {
+        width: 520px;
+        background: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin: -215px 0 0 -260px;
+        text-align: center;
+        padding: 30px 0 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.3);
+        border-radius: 4px;
+        overflow: hidden;
+        z-index: 9999;
+    }
+    .sign-in-and-login >img {
+        width: 106px;
+        height: 36px;
+    }
+    .animation {
+        -webkit-transform: perspective(2000px) rotateY(-90deg);
+        -webkit-animation: flip .4s linear,flip_out .4s .41s linear;
+        transform: perspective(2000px) rotateY(-90deg);
+        animation: flip .4s linear,flip_out .4s .41s linear;
+    }
+    .login,
+    .sign-in,
+    .find-back,
+   .sign-in-and-login{
+        display: none;
+    }
+    .sign-in-and-login .sign-in-centre>p:first-child {
+        font-size: 16px;
+        color: #999;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .sign-in-and-login .sign-in-centre>p:first-child:before {
+        content: '';
+        position: absolute;
+        width: 9%;
+        border-bottom: 1px solid #eee;
+        left: 103px;
+        top: 8px;
+        display: block;
+    }
+    .sign-in-and-login .sign-in-centre>p:first-child:after {
+        content: '';
+        position: absolute;
+        width: 9%;
+        border-bottom: 1px solid #eee;
+        right: 108px;
+        top: 8px;
+        display: block;
+    }
+    .sign-in-centre li {
+        float: left;
+
+    }
+    .sign-in-centre ul {
+        margin: 20px 0 20px 97px;
+    }
+    .sign-in-centre li .iconfont {
+        font-size: 60px;
+        margin-left: 20px;
+    }
+    .sign-in-centre li:nth-child(1) a{
+        display: block;
+        background: url("./image/shejiao.svg") 0 0 no-repeat;
+        width:64px;
+        height: 64px;
+        margin-right: 20px;
+    }
+    .sign-in-centre li:nth-child(1):hover a{
+        background-position: 0 -80px;
+    }
+    .sign-in-centre li:nth-child(2) a{
+        display: block;
+        background: url("./image/shejiao.svg") -80px 0 no-repeat;
+        width:64px;
+        height: 64px;
+        margin-right: 20px;
+    }
+    .sign-in-centre li:nth-child(2):hover a{
+        background-position: -80px -80px;
+    }
+    .sign-in-centre li:nth-child(3) a{
+        display: block;
+        background: url("./image/shejiao.svg") -160px 0 no-repeat;
+        width:64px;
+        height: 64px;
+        margin-right: 20px;
+    }
+    .sign-in-centre li:nth-child(3):hover a{
+        background-position: -160px -80px;
+    }
+    .sign-in-centre li:nth-child(4) a{
+        display: block;
+        background: url("./image/shejiao.svg") -320px 0 no-repeat;
+        width:64px;
+        height: 64px;
+        margin-right: 20px;
+    }
+    .sign-in-centre li:nth-child(4):hover a{
+        background-position: -320px -80px;
+    }
+    .sign-in-footer span a,
+    .sign-in-centre>p>a {
+        color: #9E7E6B;
+        font-size: 14px;
+        margin-bottom: 30px;
+        display: block;
+    }
+    .sign-in-footer span a:hover,
+    .sign-in-centre>p>a:hover{
+        color: #9A0000;
+        text-decoration: underline;
+    }
+    .sign-in-footer {
+        text-align: right;
+        margin-right: 20px;
+    }
+    .sign-in-footer span a{
+        margin-bottom: 0;
+        display: inline;
+    }
+    .header-x span {
+        font-size: 24px;
+        color: #bcbcbc;
+        position: absolute;
+        top: 8px;
+        right: 11px;
+        cursor: pointer;
+    }
+    .login-wrap{
+        width: 286px;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 28px;
+    }
+    .login-wrap>p:nth-child(3),
+    .login-wrap>p:first-child {
+        font-size: 16px;
+        color: #999;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .login-wrap>p:nth-child(3):before,
+    .login-wrap>p:first-child:before{
+        content: '';
+        position: absolute;
+        width: 14%;
+        border-bottom: 1px solid #eee;
+        left: 4px;
+        top: 8px;
+        display: block;
+    }
+    .login-wrap>p:first-child:after,
+    .login-wrap>p:nth-child(3):after{
+        content: '';
+        position: absolute;
+        width: 14%;
+        border-bottom: 1px solid #eee;
+        right: 4px;
+        top: 8px;
+        display: block;
+    }
+    .login-wrap ul {
+        margin: 20px -10px 25px 0;
+    }
+    .login-wrap li {
+        float: left;
+        margin-left: 2px;
+    }
+    .login-wrap li a {
+        display: block;
+        background: url("./image/shejiaosmall.svg");
+        margin-right: 9px;
+        width: 48px;
+        height:48px;
+    }
+    .login-wrap li:nth-child(1) a {
+        background-position: 0 0;
+    }
+    .login-wrap li:nth-child(1) a:hover {
+        background-position: 0 -80px;
+    }
+    .login-wrap li:nth-child(2) a:hover {
+        background-position: -80px 0;
+    }
+    .login-wrap li:nth-child(2) a {
+        background-position: -80px -80px;
+    }
+    .login-wrap li:nth-child(3) a {
+        background-position: -160px 0;
+    }
+    .login-wrap li:nth-child(3) a:hover {
+        background-position: -160px -80px;
+    }
+    .login-wrap li:nth-child(4) a {
+        background-position: -240px 0;
+    }
+    .login-wrap li:nth-child(4) a:hover {
+        background-position: -240px -80px;
+    }
+    .login-wrap li:nth-child(5) a {
+        background-position: -320px 0;
+    }
+    .login-wrap li:nth-child(5) a:hover {
+        background-position: -320px -80px;
+    }
+    .find-back-wrapper form,
+    .login-wrap form {
+        margin: 13px 0;
+    }
+    .find-back-wrapper form input[type="text"],
+    .login-wrap form input[type="text"],
+     .login-wrap form input[type="password"]{
+        display: block;
+        padding: 0 10px;
+        height: 36px;
+        font-size: 16px;
+        line-height: 1;
+        color: #777;
+        background: #FCFCFC;
+        border: 1px solid #CCC;
+        border-radius: 3px;
+        width: 286px;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.05);
+        margin-bottom: 10px;
+    }
+    .find-back-wrapper form input[type="text"]:focus,
+    .login-wrap form input[type="text"]:focus,
+    .login-wrap form input[type="password"]:focus {
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        background: #FFF;
+        color: #444;
+    }
+    .find-back-wrapper form input[type="submit"],
+    .login-wrap form input[type="submit"] {
+        width: 286px;
+        height: 36px;
+        background: linear-gradient( #F45D68, #E54646);
+        color: #fff;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.1);
+        border: 1px solid #C90000;
+        border-radius: 2px;
+    }
+    .login-wrap .footer{
+        text-align: left;
+    }
+    .login-wrap .footer p {
+        display: inline-block;
+        margin-left: 36px;
+        font-size: 14px;
+    }
+    .login-wrap .footer a {
+        color: #9A0000;
+    }
+    .login-wrap .footer a:hover {
+        text-decoration: underline;
+    }
+    .find-back-wrapper {
+        width: 286px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .find-back-wrapper>p {
+        font-size: 16px;
+        color: #999;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .find-back-wrapper>p:before {
+        content: '';
+        position: absolute;
+        width: 14%;
+        border-bottom: 1px solid #eee;
+        right: 4px;
+        top: 8px;
+        display: block;
+
+    }
+    .find-back-wrapper>p:after {
+        content: '';
+        position: absolute;
+        width: 14%;
+        border-bottom: 1px solid #eee;
+        right: 4px;
+        top: 8px;
+        display: block;
+    }
+    .find-back-wrapper  {
+        text-align: left;
+    }
+    .find-back-wrapper>a {
+        color: #C90000;
+    }
+    .find-back-wrapper>a:hover {
+        text-decoration: underline;
+    }
+    .header-x.login-x span,
+    .find-x.header-x span{
+        right: -107px;
+        top: -90px;
+    }
+    @-webkit-keyframes flip {
+        0% {
+            -webkit-transform: perspective(2000px)rotateY(0deg);
+        }
+        100% {
+            -webkit-transform: perspective(2000px)rotateY(90deg);
+        };
+    }
+    @-webkit-keyframes flip_out {
+         0% {
+             -webkit-transform: perspective(2000px)rotateY(-90deg);
+         }
+         100% {
+             -webkit-transform: perspective(2000px)rotateY(0deg);
+         };
+    }
+    @keyframes flip {
+         0% {
+             transform: perspective(2000px)rotateY(0deg);
+         }
+         100% {
+             transform: perspective(2000px)rotateY(90deg);
+         };
+    }
+    @keyframes flip_out {
+         0% {
+             transform: perspective(2000px)rotateY(-90deg);
+         }
+         100% {
+             transform: perspective(2000px)rotateY(0deg);
+         };
+    }
+    .animation {
+         -webkit-transform: perspective(2000px)rotateY(-90deg);
+         -webkit-animation: flip .4s linear, flip_out .4s .41s linear;
+         transform: perspective(2000px)rotateY(-90deg);
+         animation: flip .4s linear, flip_out .4s .41s linear;
+     }
+    .overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.3);
+        z-index: 99999;
+        display: none;
+    }
+    .nav-wrapper {
+        height: 48px;
+    }
+    .top {
+        position: relative;
+    }
+</style>
+<body>
+<div id="page">
+    <header>
+            <nav class="nologin-index transition clearfix">
+                <div class="wrapper wrapper-996">
+                    <div class="nav-wrapper">
+                        <div class="nav-left">
+                            <a class="logo" href="  "></a>
+                            <ul class="category clearfix">
+                                <li class="active"><a href="">发现</a></li>
+                                <li><a href="">最新</a></li>
+                                <li><a href="">美思 <span class="iconfont icon-new"></span></a></li>
+                                <li><a href="">教育</a></li>
+                                <li class="iconfont icon-gengduo">
+                                    <div class="categrory-more">
+                                        <span class="iconfont icon-shangsanjiao"></span>
+                                        <div class="more-header">
+                                            <ul class="clearfix">
+                                                <li><a href="">移动应用</a></li>
+                                                <li><a href="">采集工具</a></li>
+                                                <li><a href="">招聘</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="more-main">
+                                            <ul class="clearfix">
+                                                <li><a href="">UI/UX</a></li>
+                                                <li><a href="">男士/风尚</a> </li>
+                                                <li><a href="">平面</a></li>
+                                                <li><a href="">婚礼</a></li>
+                                                <li><a href="">插画/漫画</a></li>
+                                                <li><a href="">家具/家装</a></li>
+                                                <li><a href="">工业设计</a></li>
+                                                <li><a href="">摄影</a></li>
+                                                <li><a href="">女装/搭配</a></li>
+                                                <li><a href="">兴趣/生活»</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="more-footer">
+                                            <ul class="clearfix">
+                                                <li><a href=""><span class="iconfont icon-pin"></span></a></li>
+                                                <li><a href="">活动</a></li>
+                                                <li><a href="">周刊</a></li>
+                                                <li><a href="">关于</a></li>
+                                                <li><a href="">反馈</a></li>
+                                                <li><a href="">博客</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="nav-right clearfix">
+                            <li><a href="">注册</a></li>
+                            <li><a href="">登陆</a></li>
+                        </ul>
+                        <div class="nav-centre">
+                            <input type="text" placeholder="搜索你喜欢的"/>
+                            <span class="iconfont icon-sou"></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        <div class="header-centre">
+            <h1></h1>
+            <div class="search">
+                <div class="search-ipt">
+                    <form action="">
+                        <input type="text" placeholder="搜索你喜欢的">
+                        <span class="iconfont icon-sou"></span>
+                    </form>
+                </div>
+                <p>热门搜索：</p>
+                <p><a href="">匠人匠心</a></p>
+            </div>
+        </div>
+        <div class="author">
+            <span>图片：</span>
+            <a href="">插画师苏寒</a>
+        </div>
+    </header>
+    <main>
+        <div class="wrapper-996 wrapper">
+            <div class="attention-line">
+                <span>大家正在关注</span>
+            </div>
+            <div class="category-image-box">
+                <ul class="clearfix">
+                    <li>
+                        <a href="">
+                            <img src="./image/wawa.jpg" alt=""/>
+                            <span class="cover">SD娃娃</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p2.jpg" alt=""/>
+                            <span class="cover">旧物改造</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p3.jpg" alt=""/>
+                            <span class="cover">古风海报</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p4.jpg" alt=""/>
+                            <span class="cover">简笔画</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p5.jpg" alt=""/>
+                            <span class="cover">夜景手机壁纸</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p6.jpg" alt=""/>
+                            <span class="cover">杨洋</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="./image/p7.jpg" alt=""/>
+                            <span class="cover">条纹服饰</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="recommend-wrap">
+                <div class="recommend-line">
+                    <span>为您推荐</span>
+                </div>
+                <div class="recommend-container">
+                    <div class="recommend-container-row">
+                        <ul class="clearfix">
+                            <li class="recommend-box recommend-imgbox">
+                                <a href=""><img src="./image/t1.png" alt=""/></a>
+                            </li>
+                            <li class="recommend-box">
+                                <div class=" recommend-infobox top small">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">两颗小草莓</a></h2>
+                                    <p>
+                                        <span>56采集</span>
+                                        <span>2752粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">洪小璇</a></span>
+                                </div>
+                                <span class="iconfont icon-zuosanjiao"></span>
+                                <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                <div class="recommend-infobox bottom small tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">Susiu | 花寂</a></h2>
+                                    <p>
+                                        <span>272采集</span>
+                                        <span>1266粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">听琴语</a></span>
+                                </div>
+                                <span class="iconfont icon-552cd681662a6"></span>
+                                <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                            </li>
+                            <li class="recommend-imgbox recommend-box">
+                                <a href=""><img src="./image/t2.jpg" alt=""/></a>
+                            </li>
+                            <li class="recommend-hidebox">  <!--这里好像需要一个pl-right-->
+                                <div class="recommend-imgbox recommend-box">
+                                    <a href=""><img src="./image/t3.jpg" alt=""/></a>
+                                </div>
+                                <div class="recommend-infobox board recommend-box big">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">七彩☞</a></h2>
+                                    <p>
+                                        <span>793采集</span>
+                                        <span>3182粉丝</span>
+                                    </p>
+                                    <span>来自 <a href="">达令</a> </span>
+                                    <span class="iconfont icon-zuosanjiao"></span>
+                                    <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recommend-container-row">
+                        <ul class="clearfix">
+                            <li class="recommend-hidebox">
+                                <div class="recommend-infobox board recommend-box big tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">【Feeling】</a></h2>
+                                    <p>
+                                        <span>2939采集</span>
+                                        <span>31584粉丝</span>
+                                    </p>
+                                    <span>来自 <a href="">同性爱人</a> </span>
+                                    <span class="iconfont icon-552cd681662a6"></span>
+                                    <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                                </div>
+                                <div class="recommend-imgbox recommend-box">
+                                    <a href=""><img src="./image/t4.jpg" alt=""/></a>
+                                </div>
+
+                            </li>
+                            <li class="recommend-box recommend-imgbox">
+                                <a href=""><img src="./image/t10.jpg" alt=""/></a>
+                            </li>
+                            <li class="recommend-box">
+                                <div class=" recommend-infobox top small">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">渐变背景</a></h2>
+
+                                </div>
+                                <span class="iconfont icon-zuosanjiao"></span>
+                                <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                <div class="recommend-infobox bottom small tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">山</a></h2>
+                                    <p>
+                                        <span>73采集</span>
+                                        <span>2677粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">7cents</a></span>
+                                </div>
+                                <span class="iconfont icon-552cd681662a6"></span>
+                                <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                            </li>
+                            <li class="recommend-imgbox recommend-box">
+                                <a href=""><img src="./image/t6.jpg" alt=""/></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recommend-container-row">
+                        <ul class="clearfix">
+                            <li class="recommend-box recommend-imgbox">
+                                <a href=""><img src="./image/t7.png" alt=""/></a>
+                            </li>
+                            <li class="recommend-box">
+                                <div class=" recommend-infobox top small">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">♔心森林</a></h2>
+                                    <p>
+                                        <span>68采集</span>
+                                        <span>2188粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">不及你一人暖</a></span>
+                                </div>
+                                <span class="iconfont icon-zuosanjiao"></span>
+                                <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                <div class="recommend-infobox bottom small tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">《神明之胄》第2季</a></h2>
+                                    <p>
+                                        <span>32采集</span>
+                                        <span>121粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">神明之胄</a></span>
+                                </div>
+                                <span class="iconfont icon-552cd681662a6"></span>
+                                <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                            </li>
+                            <li class="recommend-imgbox recommend-box">
+                                <a href=""><img src="./image/t9.png" alt=""/></a>
+                            </li>
+                            <li class="recommend-hidebox">  <!--这里好像需要一个pl-right-->
+                                <div class="recommend-imgbox recommend-box">
+                                    <a href=""><img src="./image/t5.jpg" alt=""/></a>
+                                </div>
+                                <div class="recommend-infobox board recommend-box big">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href=""># Fell</a></h2>
+                                    <p>
+                                        <span>309采集</span>
+                                        <span>2254粉丝</span>
+                                    </p>
+                                    <span>来自 <a href="">Y-猫与白日梦</a> </span>
+                                    <span class="iconfont icon-zuosanjiao"></span>
+                                    <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recommend-container-row">
+                        <ul class="clearfix">
+                            <li class="recommend-hidebox">
+                                <div class="recommend-infobox board recommend-box big">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">世界最美图书馆</a></h2>
+                                    <p>
+                                        <span>160采集</span>
+                                        <span>1454粉丝</span>
+                                    </p>
+                                    <span>来自 <a href="">bigcatch</a> </span>
+                                    <span class="iconfont icon-552cd681662a6"></span>
+                                    <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                                </div>
+                                <div class="recommend-imgbox recommend-box">
+                                    <a href=""><img src="./image/t12.jpg" alt=""/></a>
+                                </div>
+
+                            </li>
+                            <li class="recommend-box recommend-imgbox">
+                                <a href=""><img src="./image/t11.jpg" alt=""/></a>
+                            </li>
+                            <li class="recommend-box">
+                                <div class=" recommend-infobox top small">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">自然的馈赠</a></h2>
+                                    <p>
+                                        <span>1356采集</span>
+                                        <span>9080粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">行悠</a></span>
+                                </div>
+                                <span class="iconfont icon-zuosanjiao"></span>
+                                <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                <div class="recommend-infobox bottom small tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">超美的书房设计</a></h2>
+                                    <p>
+                                        <span>414采集</span>
+                                        <span>18766粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">绘本家居</a></span>
+                                </div>
+                                <span class="iconfont icon-552cd681662a6"></span>
+                                <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                            </li>
+                            <li class="recommend-imgbox recommend-box">
+                                <a href=""><img src="./image/t13.jpg" alt=""/></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recommend-container-row">
+                        <ul class="clearfix">
+                            <li class="recommend-box recommend-imgbox">
+                                <a href=""><img src="./image/t14.jpg" alt=""/></a>
+                            </li>
+                            <li class="recommend-box">
+                                <div class=" recommend-infobox top small">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">雪</a></h2>
+                                </div>
+                                <span class="iconfont icon-zuosanjiao"></span>
+                                <span class="iconfont icon-zuosanjiao zuosanjiao2"></span>
+                                <div class="recommend-infobox bottom small tx-right">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">青原历</a></h2>
+                                    <p>
+                                        <span>149采集</span>
+                                        <span>2263粉丝</span>
+                                    </p>
+                                    <span>来自<a href="">元首的画师爱世界</a></span>
+                                </div>
+                                <span class="iconfont icon-552cd681662a6"></span>
+                                <span class="iconfont icon-552cd681662a6 yousanjiao2"></span>
+                            </li>
+                            <li class="recommend-imgbox recommend-box">
+                                <a href=""><img src="./image/t15.jpg" alt=""/></a>
+                            </li>
+                            <li class="recommend-hidebox">  <!--这里好像需要一个pl-right-->
+                                <div class="recommend-imgbox recommend-box">
+                                    <a href=""><img src="./image/t16.jpg" alt=""/></a>
+                                </div>
+                                <div class="recommend-infobox board recommend-box big">
+                                    <div class="recommend-data"></div>
+                                    <h2><a href="">「人们」</a></h2>
+                                    <p>
+                                        <span>836采集</span>
+                                        <span>342粉丝</span>
+                                    </p>
+                                    <span>来自 <a href="">Agatha的少女</a> </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="recommend-more">
+                    <a href="">加载更多</a>
+                </div>
+            </div>
+            <div class="category-browse">
+                <div class="category-title clearfix">
+                    <p>以分类浏览花瓣</p>
+                    <p><a href="">所有采集 »</a></p>
+                </div>
+                <div class="category-content clearfix">
+                    <ul class="clearfix">
+                        <li><a href="">UI/UX</a></li>
+                        <li><a href="">工业设计</a></li>
+                        <li><a href="">儿童</a></li>
+                        <li><a href="">动漫</a></li>
+                        <li><a href="">生活百科</a></li>
+                        <li><a href="">平面</a></li>
+                        <li><a href="">摄影</a></li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li><a href="">宠物</a></li>
+                        <li><a href="">建筑设计</a></li>
+                        <li><a href="">教育</a></li>
+                        <li><a href="">插画/漫画</a></li>
+                        <li><a href="">造型/美妆</a></li>
+                        <li><a href="">美图</a></li>
+                        <li><a href="">数据图</a></li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li><a href="">搞笑</a></li>
+                        <li><a href="">女装/搭配</a></li>
+                        <li><a href="">旅行</a></li>
+                        <li><a href="">美女</a></li>
+                        <li><a href="">游戏</a></li>
+                        <li><a href="">男士/风尚</a></li>
+                        <li><a href="">手工/布艺</a></li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li><a href="">礼物</a></li>
+                        <li><a href="">汽车/摩托</a></li>
+                        <li><a href="">婚礼</a></li>
+                        <li><a href="">健身/舞蹈</a></li>
+                        <li><a href="">极客</a></li>
+                        <li><a href="">电影/图书</a></li>
+                        <li><a href="">人文</a></li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li><a href="">运动</a></li>
+                        <li><a href="">家具/家装</a></li>
+                        <li><a href="">美食</a></li>
+                        <li><a href="">明星</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="wrapper wrapper-996 clearfix">
+            <div class="msg clearfix">
+                <ul>
+                    <li><a href="">花瓣首页</a></li>
+                    <li><a href="">花瓣采集工具</a></li>
+                    <li><a href="">花瓣官方博客</a></li>
+                </ul>
+                <ul>
+                    <li>移动客户端</li>
+                    <li><a href="">花瓣 iphone 版</a></li>
+                    <li><a href="">花瓣 Andriod 版</a></li>
+                    <li><a href="">花瓣 HD</a></li>
+                </ul>
+                <ul>
+                    <li>联系与合作</li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">用户反馈</a></li>
+                    <li><a href="">花瓣LOGO 标准文档</a></li>
+                </ul>
+            </div>
+            <div class="follow clearfix">
+                <ul>
+                    <li>关注我们</li>
+                    <li><a href="">新浪微博：@花瓣网</a></li>
+                    <li>官方QQ：188126952</li>
+                    <li>
+                        官方微信：<img src="./image/weixinsmall.png" alt=""/>
+                        <div class="big-weixin">
+                            <img src="./image/weixinbig.png" alt=""/>
+                        </div>
+                    </li>
+                    <li> <img src="./image/sm.png" alt=""/></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="wrapper wrapper-996 bottom">
+                <ul class="clearfix">
+                    <li>© Huaban 杭州纬聚网络有限公司 | </li>
+                    <li><a href="">浙公网安备 33010602001878号</a></li>
+                </ul>
+        </div>
+    </footer>
+    <ul class="elevator">
+        <li><span class="iconfont icon-jiantoushang"></span></li>
+        <li>
+            <span class="iconfont icon-plus"></span>
+            <ul class="tool">
+                <li><a href="">添加采集</a></li>
+                <li><a href="">添加画板</a></li>
+                <li><a href="">安装采集工具</a></li>
+                <li><span class="iconfont icon-552cd681662a6"></span></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="overlay">
+        <div class="sign-in-and-login">
+            <img src="./image/logo2.svg" alt=""/>
+            <div class="sign-in clearfix">
+                <div class="header-x">
+                    <span>X</span>
+                </div>
+                <div class="sign-in-centre">
+                    <p>用第三方账号注册花瓣</p>
+                    <ul class="clearfix">
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                    <p><a href="">使用手机号/邮箱注册</a></p>
+                </div>
+                <div class="sign-in-footer">
+                    <span>已有账号？</span>
+                    <span><a href="">登录到花瓣</a></span>
+                </div>
+            </div>
+            <div class="login">
+                <div class="login-wrap">
+                    <div class="header-x login-x">
+                        <span>X</span>
+                    </div>
+                    <p>使用第三方账号登录</p>
+                    <ul class="clearfix">
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                    <p>使用手机号/邮箱登陆</p>
+
+                    <form action="" method="post">
+                        <input type="text" placeholder="请输入手机号或邮箱"/>
+                        <input type="password" placeholder="密码"/>
+                        <input type="submit" value="登陆"/>
+                    </form>
+                    <div class="footer">
+                        <a href="">忘记密码»</a>
+                        <p>
+                            还没有花瓣账号？
+                            <a href="">点击注册»</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="find-back">
+                <div class="find-back-wrapper">
+                    <div class="header-x find-x">
+                        <span>X</span>
+                    </div>
+                    <p>找回密码</p>
+                    <form action="post">
+                        <input type="text" placeholder="请输入手机号或邮箱"/>
+                        <input type="submit" value="重置"/>
+                    </form>
+                    <a href="">又想起来了»</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    var $nav = $('nav');
+    var $navCentre = $('.nav-centre');
+    var $goTopBtn = $('.elevator>li:first-child');
+    var $loginBtn = $('.nav-right li:last-child a');
+    var $signInBtn = $('.nav-right li:first-child a');
+    var $signInAndLogin = $('.sign-in-and-login');
+    var $signInShow = $('.sign-in');
+    var $loginShow = $('.login');
+    var $findBackShow = $('.find-back');
+    var $innerSignInBtn = $('.login .footer>p>a');
+    var $innerFindBackBtn = $('.login .footer>a');
+    var $loginBtnInfindBack = $('.find-back-wrapper>a');
+    var $loginBtnInSignIn = $('.sign-in-footer>span>a');
+    var $closeBtn = $('.header-x');
+    var $overlay = $('.overlay');
+
+    $('a').on('click', function(ev) {
+        ev.preventDefault();
+    })
+    $(window).on('scroll', function() {
+        var scrollH = $(window).scrollTop();
+        if (scrollH > 190) {
+           $nav.removeClass('nologin-index');
+           $navCentre.addClass('active');
+        } else {
+           if($nav.hasClass('nologin-index')) return;
+           $nav.addClass('nologin-index');
+           $navCentre.removeClass('active');
+        }
+    })
+
+    var goTop = function () {
+        function init($goTop) {
+            var winH = $(window).height();
+            bind($goTop);
+        }
+        function bind($goTop) {
+            $(window).on('scroll', function() {
+                var scrollH = $(window).scrollTop();
+                if(scrollH > 200) {
+                    $goTop.show();
+                } else {
+                    $goTop.hide();
+                }
+            })
+            $goTop.on('click', function() {
+                $(window).scrollTop(0);
+            });
+        }
+        return {
+            init: init
+        }
+    }
+    goTop().init($goTopBtn);
+
+    $signInBtn.on('click', function (ev) {
+        $overlay.show();
+        $signInAndLogin.css('margin-top', -155);
+        $signInAndLogin.show();
+        $signInShow.show();
+        $loginShow.hide();
+        $findBackShow.hide();
+
+    })
+    $loginBtn.on('click', function (ev) {
+        $overlay.show();
+        $signInAndLogin.css('margin-top', -222);
+        $signInAndLogin.show();
+        $signInShow.hide();
+        $loginShow.show();
+        $findBackShow.hide();
+    })
+    $innerSignInBtn.on('click', function (ev) {
+        $signInAndLogin.css('margin-top', -155);
+        addAmimation();
+        $signInShow.show();
+        $loginShow.hide();
+        $findBackShow.hide();
+    })
+    $innerFindBackBtn.on('click', function () {
+        $signInAndLogin.css('margin-top', -155);
+        addAmimation();
+        $signInShow.hide();
+        $loginShow.hide();
+        $findBackShow.show();
+    })
+    $loginBtnInfindBack.on('click', function (ev) {
+        $signInAndLogin.css('margin-top', -222);
+        addAmimation();
+        $signInShow.hide();
+        $loginShow.show();
+        $findBackShow.hide();
+    })
+    $loginBtnInSignIn.on('click', function (ev) {
+        $signInAndLogin.css('margin-top', -222);
+        addAmimation();
+        $signInShow.hide();
+        $loginShow.show();
+        $findBackShow.hide();
+    })
+    $closeBtn.on('click', function(ev) {
+        var $this = $(this)
+        var a  =$this.parents('.find-back');
+        if($this.parents('.sign-in-and-login')) {
+            $this.parents('.sign-in-and-login').hide();
+            $overlay.hide();
+        }
+    })
+
+    function addAmimation() {
+        $signInAndLogin.addClass('animation');
+        var time =  setTimeout(function() {
+            $signInAndLogin.removeClass('animation');
+        },810);
+    }
+</script>
+</body>
+</html>
