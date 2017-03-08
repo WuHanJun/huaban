@@ -11,11 +11,9 @@ define(['jquery'], function ($) {
         },
         autoJudge: function () {
             var scrollH = $(window).scrollTop();
-            console.log(scrollH);
             this.judgeOffset(scrollH);
         },
         judgeOffset: function (scrollH) {
-            console.log(this);
             if (scrollH > 190) {
                 this.$nav.removeClass('nologin-index');
                 this.$navCentre.addClass('active');
