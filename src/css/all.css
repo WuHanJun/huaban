@@ -818,7 +818,7 @@ form {
 footer {
     background: #333;
     padding-top: 25px;
-    margin-top: 20px;
+    margin:20px 0 -17px 0;
 }
 footer .msg {
     float: left;
